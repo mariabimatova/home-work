@@ -1,0 +1,1 @@
+This is repository homeworks for Netology Python course
