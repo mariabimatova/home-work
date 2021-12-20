@@ -66,7 +66,7 @@ r = Reviewer('Pasha', 'Proveryalkin')
 r.courses_attached += ['Python', 'Java']
 r.rate_hw(me, 'Python', 10)
 r.rate_hw(me, 'Python', 9)
-r.rate_hw(jay, 'Python', 5) # error
+r.rate_hw(jay, 'Python', 5)  # error
 
 print("Grades of Masha: ")
 print(me.grades)
