@@ -20,11 +20,29 @@ print(some_student)
 Курсы в процессе изучения: Python, Git
 Завершенные курсы: Введение в программирование
 
-Реализуйте возможность сравнивать (через операторы сравнения) между собой лекторов по средней оценке за лекции и 
+Реализуйте возможность сравнивать (через операторы сравнения)
+ между собой лекторов по средней оценке за лекции и 
 студентов по средней оценке за домашние задания.'''
 
-class Student:
 
+def calcAvgGrade(grades):
+    grades_list = []
+    for k, v in grades.items():
+        for i in v:
+            grades_list.append(i)
+
+    sum = 0
+    for i in grades_list:
+        sum = sum+i
+
+    if len(grades_list) > 0:
+        average_grade = sum / len(grades_list)
+    else:
+        average_grade = 0
+    return average_grade
+
+
+class Student:
     def __init__(self, name, surname, gender):
         self.name = name
         self.surname = surname
@@ -33,25 +51,8 @@ class Student:
         self.courses_in_progress = []
         self.grades = {}
 
-    def rateLecturer(self, professor, course, grade):
-        if course in self.courses_in_progress:
-            professor.grades.setdefault(course, [])
-            professor.grades[course].append(grade)
-        else:
-            return "Ошибка"
-
-    def calculateAverageGrade(self):
-        average_grade = 0
-
-        # TODO: Вычислить средний балл за все предметы у этого студента
-        # grades = {'Python':[5, 7, 9], 'Java':[3, 5], 'Git':[10]}
-        # self.grades
-
-        return average_grade
-
     def __str__(self):
-        
-        average_grade = self.calculateAverageGrade()
+        average_grade = calcAvgGrade(self.grades)
 
         line1 = f"Name: {self.name}"
         line2 = f"Surname: {self.surname}"
@@ -59,6 +60,18 @@ class Student:
         line4 = f"Courses in progress: {self.courses_in_progress}"
         line5 = f"Finished courses: {self.finished_courses}"
         return line1 + "\n" + line2 + "\n" + line3 + "\n" + line4 + "\n" + line5
+
+    def __lt__(self, other):
+        a = calcAvgGrade(self.grades)
+        b = calcAvgGrade(other.grades)
+        return a < b
+
+    def rateLecturer(self, professor, course, grade):
+        if course in self.courses_in_progress:
+            professor.grades.setdefault(course, [])
+            professor.grades[course].append(grade)
+        else:
+            return "Ошибка"
 
 
 class Mentor:
@@ -69,25 +82,22 @@ class Mentor:
 
 
 class Lecturer(Mentor):
-    grades = {}
-
-    def calculateAverageGrade(self):
-        average_grade = 0
-
-        # TODO: Вычислить средний балл за все предметы у этого предподавателя
-        # grades = {'Python':[5, 7, 9], 'Java':[3, 5], 'Git':[10]}
-        # self.grades
-
-        return average_grade
+    def __init__(self, name, surname):
+        super().__init__(name, surname)
+        self.grades = {}
 
     def __str__(self):
-        
-        average_grade = self.calculateAverageGrade()
+        average_grade = calcAvgGrade(self.grades)
 
         line1 = f"Name: {self.name}"
         line2 = f"Surname: {self.surname}"
         line3 = f"Average grade: {average_grade}"
         return line1 + "\n" + line2 + "\n" + line3
+
+    def __lt__(self, other):
+        a = calcAvgGrade(self.grades)
+        b = calcAvgGrade(other.grades)
+        return a < b
 
 
 class Reviewer(Mentor):
@@ -103,7 +113,7 @@ class Reviewer(Mentor):
     def __str__(self):
         line1 = f"Name: {self.name}"
         line2 = f"Surname: {self.surname}"
-        return line1 + "\n" + line2 
+        return line1 + "\n" + line2
 
 
 me = Student('Masha', 'Bimatova', 'F')
@@ -124,21 +134,26 @@ print(me.grades)
 print("Grades of Jay:")
 print(jay.grades)
 
-p = Lecturer('Vasya', 'Professorov')
-p.courses_attached += ['Java']
+p1 = Lecturer('Vasya', 'Professorov')
+p1.courses_attached += ['Java']
 
-me.rateLecturer(p, "Python", 7)
-jay.rateLecturer(p, "Java", 8)
+p2 = Lecturer('Lena', 'Docentova')
+p2.courses_attached += ['Java']
 
-print("Grades of professor: ")
-print(p.grades)
-
+me.rateLecturer(p1, "Python", 7)
+jay.rateLecturer(p1, "Java", 8)
+jay.rateLecturer(p1, "Java", 7)
+jay.rateLecturer(p2, "Java", 9)
+jay.rateLecturer(p2, "Java", 7)
 
 print("*** Printing reviewer: ")
 print(r)
 
-print("*** Printing professor: ")
-print(p)
+print(f"*** Printing professor: {p1.name}")
+print(p1)
+
+print(f"*** Printing professor: {p2.name}")
+print(p2)
 
 print("*** Printing me: ")
 print(me)
@@ -146,3 +161,11 @@ print(me)
 print("*** Printing jay:")
 print(jay)
 
+print("Jay < me: ", end="")
+print(jay < me)
+
+print("Me > me: ", end="")
+print(me > jay)
+
+print(f"Professor {p1.name} < professor {p2.name}: ", end="")
+print(p1 < p2)
