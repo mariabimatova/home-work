@@ -30,14 +30,15 @@ def read_course(f):
     print(list_line)
   
 
-with open ('file11.txt', encoding ='utf-8') as file1:
+with open('file11.txt', encoding ='utf-8') as file1:
   while True:
     read_course(file1)
     empty_line = file1.readline()
     if empty_line == '':
       break
 
-
+print("Cook book:")
+print(cook_book)
     
 
 
