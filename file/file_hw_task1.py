@@ -21,7 +21,7 @@ cook_book = {}
 
 
 def read_course(f):
-    course_name = f.readline().strip
+    course_name = f.readline().strip()
     m = []
     cook_book[course_name] = m
 
@@ -48,6 +48,6 @@ with open('file11.txt', encoding='utf-8') as file1:
         empty_line = file1.readline()
         if empty_line == '':
             break
-# cook_book[course_name] = []
+
 print("Cook book:")
 print(cook_book)
