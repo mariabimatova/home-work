@@ -17,37 +17,32 @@
     ]'''
 
 
-cook_book = {}
-
-
-def read_course(f):
+def read_course(f, cook_book):
     course_name = f.readline().strip()
+    ing_count = int(f.readline())
     m = []
     cook_book[course_name] = m
-
-    ing_count = int(f.readline())
 
     for i in range(ing_count):
         line = f.readline().strip()
         list_line = line.split("|")
         ing_dict = {}
-        ing_dict.setdefault("ingredient_name", list_line[0])
-        ing_dict.setdefault("quantity", list_line[1])
-        ing_dict.setdefault("measure", list_line[2])
+        ing_dict["ingredient_name"] = list_line[0].strip()
+        ing_dict["quantity"] = int(list_line[1])
+        ing_dict["measure"] = list_line[2].strip()
         m.append(ing_dict)
 
 
+def load_cook_book_from_file(file_name):
+    cook_book = {}
+    with open(file_name, encoding='utf-8') as file1:
+        while True:
+            read_course(file1, cook_book)
+            empty_line = file1.readline()
+            if empty_line == '':
+                break
+    print("Cook book:")
+    print(cook_book)
 
-        # print(list_line)
-        # chto to sdelatj nado tut, chtob pustoi spisok zapolnitj elementami
-        # na kagdiy ingredient (storku iz faila) nado dobavitj 1 element spiska
-        # i etot element budet tipa slovarj (dict)
-with open('file11.txt', encoding='utf-8') as file1:
-    while True:
-        read_course(file1)
-        empty_line = file1.readline()
-        if empty_line == '':
-            break
 
-print("Cook book:")
-print(cook_book)
+load_cook_book_from_file('file11.txt')
