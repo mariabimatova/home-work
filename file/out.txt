@@ -1,0 +1,24 @@
+file3.txt
+1
+File with just one line of nonsense.
+file1.txt
+4
+This is file with four lines
+* line1
+* line2
+* line3
+file2.txt
+12
+Чизбургер
+3
+Булочка | 1 | шт
+Колбаса | 2 | шт
+Сыр | 2 | шт
+
+Сэндвич
+4
+Хлеб | 2 | кусок
+Масло | 40 | г
+Колбаса | 1 | кусок
+Сыр | 1 | кусок
+
