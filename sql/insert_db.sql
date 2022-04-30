@@ -64,6 +64,8 @@ values
       (7,'sbornikvitia',2020),
       (8,'sbornikluba',2018);
      
+   delete from ganri_idispolniteli  
+     
   insert into ganri_idispolniteli(id_ganri,id_ispolniteli)
   values 
       (1,1),
@@ -72,8 +74,8 @@ values
       (4,4),
       (5,5),
       (1,6),
-      (2,7),
-      (3,8);
+      (5,7),
+      (4,8);
      
  insert into ispolniteli_albomi(id_ispolniteli, id_albomi)
  values 
@@ -85,6 +87,27 @@ values
      (6,6),
      (7,7),
      (8,8);
+ insert into trek_sbornik(id_trek, Id_sbornik)
+ values 
+     (1,1),
+     (2,2),
+     (3,2),
+     (4,3),
+     (5,3),
+     (6,4),
+     (7,4),
+     (8,5),
+     (9,5),
+     (10,6),
+     (11,6),
+     (12,7),
+     (13,7),
+     (14,8),
+     (15,8);
+    
+    
+    
+    
     
     
      
