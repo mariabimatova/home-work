@@ -12,7 +12,7 @@ delete from ispolniteli;
 
 insert into ispolniteli(id,name,surname,psevdonim)
 values
-    (1,'misha','petrov','mixarock'),
+    (1,'misha mik','petrov','mixarock'),
     (2,'sasha','ivanov','sashapop'),
     (3,'masha','sidorova','maxajazz'),
     (4,'vova','kozlov','vovaclass'),
@@ -63,6 +63,32 @@ values
       (6,'sborniklena',2019),
       (7,'sbornikvitia',2020),
       (8,'sbornikluba',2018);
+     
+  insert into ganri_idispolniteli(id_ganri,id_ispolniteli)
+  values 
+      (1,1),
+      (2,2),
+      (3,3),
+      (4,4),
+      (5,5),
+      (1,6),
+      (2,7),
+      (3,8);
+     
+ insert into ispolniteli_albomi(id_ispolniteli, id_albomi)
+ values 
+     (1,1),
+     (2,2),
+     (3,3),
+     (4,4),
+     (5,5),
+     (6,6),
+     (7,7),
+     (8,8);
+    
+    
+     
+      
      
     
     
