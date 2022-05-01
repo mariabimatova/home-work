@@ -1,14 +1,22 @@
-select * from ganri
-order by name desc;
+select name, god from albomi
+where god = 2018;
 
-select * from ispolniteli;
-select * from albomi;
-select * from trek;
-select * from sbornik;
-select * from ganri_idispolniteli;
-select * from ispolniteli_albomi;
+select name, duration from trek
+ order by duration desc
+ limit 1;
+select name, duration from trek
+where duration>=3.5;
+select names, god from sbornik
+where god between 2018 and 2020;
 
-select * from  trek_sbornik;
+select name from ispolniteli
+where name not like '%% %%';
+
+select name from trek
+where name like '%%my%%';
+
+
+
 
 
 
